@@ -79,7 +79,7 @@ function Grid({ IndicatorData }) {
           region: name,
           value: item[0].value,
           code: item[0]["entity.DistCode"],
-          state: item[0]["entity.Name"],
+          state: item[0]["entity.State"],
           settlement: item[0]["settlement.Name"],
         };
       });

@@ -4,6 +4,17 @@ import DataTable from "react-data-table-component";
 import { contains } from "underscore";
 import { getUniqueKeysOf, ensureKeys } from "../../helper/listUtils";
 
+const convertAllToNumberExcept = (list, excluding) => {
+  return list.map((row) => {
+    Object.keys(row).forEach((key) => {
+      if (!contains(excluding, key)) {
+        row[key] = parseFloat(row[key], 10).toFixed(2);
+      }
+    });
+    return row;
+  });
+};
+
 const displayEverything = (list) => {
   const headers = getUniqueKeysOf(list);
   const columns = headers.map((h) => ({
@@ -16,16 +27,7 @@ const displayEverything = (list) => {
   return { headers, columns, cleanResults };
 };
 
-const convertAllToNumberExcept = (list, excluding) => {
-  return list.map((row) => {
-    Object.keys(row).forEach((key) => {
-      if (!contains(excluding, key)) {
-        row[key] = parseFloat(row[key], 10);
-      }
-    });
-    return row;
-  });
-};
+
 
 const convertToNumber = (list, field) => {
   return list.map((row) => {
